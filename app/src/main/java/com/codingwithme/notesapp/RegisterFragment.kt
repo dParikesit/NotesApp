@@ -8,7 +8,7 @@ import android.widget.Toast
 import com.codingwithme.notesapp.database.UsersDatabase
 import com.codingwithme.notesapp.entities.Users
 import kotlinx.android.synthetic.main.fragment_register.buttonLogin
-import kotlinx.android.synthetic.main.fragment_register.buttonRegister4
+import kotlinx.android.synthetic.main.fragment_register.buttonRegister
 import kotlinx.android.synthetic.main.fragment_register.editTextEmailAddress
 import kotlinx.android.synthetic.main.fragment_register.editTextName
 import kotlinx.android.synthetic.main.fragment_register.editTextPassword
@@ -47,7 +47,7 @@ class RegisterFragment : BaseFragment() {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.frame_layout, loginFragment).commit();
         }
 
-        buttonRegister4.setOnClickListener{
+        buttonRegister.setOnClickListener{
             if (editTextEmailAddress.text.isNullOrEmpty()){
                 Toast.makeText(context,"Email is required", Toast.LENGTH_SHORT).show()
             } else if (editTextName.text.isNullOrEmpty()){
