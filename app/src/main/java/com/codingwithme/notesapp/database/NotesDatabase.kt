@@ -20,7 +20,7 @@ abstract class NotesDatabase : RoomDatabase() {
                     context
                     , NotesDatabase::class.java
                     , "notes.db"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
             }
             return notesDatabase!!
         }
