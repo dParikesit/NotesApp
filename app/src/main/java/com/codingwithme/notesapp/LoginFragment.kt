@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.codingwithme.notesapp.database.UsersDatabase
 import com.codingwithme.notesapp.entities.Users
+import com.codingwithme.notesapp.util.PasswordHash
 import kotlinx.android.synthetic.main.fragment_login.buttonLogin2
 import kotlinx.android.synthetic.main.fragment_login.buttonRegister2
 import kotlinx.android.synthetic.main.fragment_login.editTextTextEmailAddress
@@ -61,7 +62,7 @@ class LoginFragment : BaseFragment() {
 
                         var userDb = UsersDatabase.getDatabase(it).userDao().getUser(user.email.toString());
 
-                        if (userDb.password!!.toString() == user.password.toString()){
+                        if (PasswordHash.verify(user.password.toString(), userDb.password.toString())){
                             (activity as MainActivity).replaceFragment(HomeFragment.newInstance(), true);
                         }
                     }

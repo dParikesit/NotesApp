@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_register.editTextEmailAddress
 import kotlinx.android.synthetic.main.fragment_register.editTextName
 import kotlinx.android.synthetic.main.fragment_register.editTextPassword
 import kotlinx.coroutines.launch
+import com.codingwithme.notesapp.util.PasswordHash
 
 class RegisterFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,11 +61,11 @@ class RegisterFragment : BaseFragment() {
                         var user = Users();
                         user.email = editTextEmailAddress.text.toString();
                         user.name = editTextName.text.toString();
-                        user.password = editTextPassword.text.toString();
+                        user.password = PasswordHash.hash(editTextPassword.text.toString());
 
                         UsersDatabase.getDatabase(it).userDao().insertUser(user);
 
-                        (activity as MainActivity).replaceFragment(HomeFragment.newInstance(), true);
+                        (activity as MainActivity).replaceFragment(LoginFragment.newInstance(), true);
                     }
                 }
             }
